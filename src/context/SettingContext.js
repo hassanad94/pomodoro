@@ -4,8 +4,8 @@ export const SettingContext = createContext();
 
 function SettingsContextProvider( props ) {
 
-    const [ durations, setDuration ] = useState([1 ,1 ,1]); // work / short / long
-    const [ remainTime, setRemainTime ] = useState([1 ,1 ,1]); // work / short / long
+    const [ durations, setDuration ] = useState([40 ,10 ,20]); // work / short / long
+    const [ remainTime, setRemainTime ] = useState([40 ,10 ,20]); // work / short / long
     const [focusQuestion, setFocusQuestion] = useState("");
     const [completedPomodoro, setCompletedPomodoro] = useState(0);
     const [newQuestion, setNewQuestion] = useState( false );
