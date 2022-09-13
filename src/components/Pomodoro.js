@@ -39,7 +39,8 @@ const Pomodoro = () => {
         setPomodoroIsSet,
         newQuestion,
         setNewQuestion,
-        setFocusQuestion
+        setFocusQuestion,
+        setDuration
     } = useContext(SettingContext);
     
     const [activeWorkState, setActiveWorkState] = useState(0);
@@ -66,18 +67,20 @@ const Pomodoro = () => {
         }
 
         if( round > 3 & activeWorkState === 0 ){
-            setRound(1);
+            //setRound(1);
         }
       
     }, [activeWorkState]);
 
     useEffect(() => {
 
-        if( round > 3 ){
+        if( round > 3 & remainTime[2] !==0 ){
             
             setIsPlaying( false );
+
             setActiveWorkState( 2 );
-            
+           
+
         }
 
     },[ round ]);
@@ -132,20 +135,22 @@ const Pomodoro = () => {
         setRound(1);
         setFocusQuestion( focusQuestionValue );
         setNewQuestion( false );
+        setRemainTime( [ remainTime[0] , durations[1] , durations[2] ] );
+        setActiveWorkState(0);
 
     }
 
     return (
     <>
 
+        <div className="pomodoro-actions">
+
+            <Button title="Új Pomodoró Beállítás" _callback={() => setPomodoroIsSet( false ) } /> 
+            { (! newQuestion && round > 3   )  &&  <Button title="Új kérdés" _callback={setUpnewQuestion}/> }
+
+        </div>
+
         <div className="pomodoro-container">
-
-            <div className="pomodoro-actions">
-
-                <Button title="Új Pomodoró Beállítás" _callback={() => setPomodoroIsSet( false ) } /> 
-                { (! newQuestion && round > 3 )  &&  <Button title="Új kérdés" _callback={setUpnewQuestion}/> }
-
-            </div>
 
             <div className="pomodoro-count">
 
@@ -154,15 +159,15 @@ const Pomodoro = () => {
             </div>
 
             { newQuestion ? 
-            <>            
-                <div className='question-container'>
+                <>            
+                    <div className='question-container'>
 
-                    <input className="" name="question" id="new-focus-question" placeholder='Mi a fokuszód témája?'/>
-                    <label>Mi a fokuszód témája?</label>
+                        <input className="" name="question" id="new-focus-question" placeholder='Mi a fokuszód témája?'/>
+                        <label>Mi a fokuszód témája?</label>
 
-                </div>
-                <Button title="Beállítom a fokusz kérdésem" _callback={ newFocusQuestion } /> 
-            </>
+                    </div>
+                    <Button title="Beállítom a fokusz kérdésem" _callback={ newFocusQuestion } /> 
+                </>
                 :
 
                 <div className='the-focus'>{focusQuestion}</div>
@@ -172,15 +177,12 @@ const Pomodoro = () => {
 
 
             <ul className='labels'>
+    
+                <li onClick={()=> changeWorkState(0) }>
+                    <Button role='work' title="Munka"
+                    />
+                </li>
 
-                {  remainTime[0] > 0 && 
-                
-                    <li onClick={()=> changeWorkState(0) }>
-                        <Button role='work' title="Munka"
-                        />
-                    </li>
-                
-                }
 
                 {  remainTime[1] > 0 && 
                                 
@@ -216,15 +218,9 @@ const Pomodoro = () => {
                 trailColor="#151932"
                 onComplete={ () => {
                     
-                    setRound( ( prev ) => ( prev + 1 ) );
-
-                    if( round < 3 ){
-
-                        return { shouldRepeat: true, delay: 0 };
-
-                    }
+                    setRound( ( prev ) =>  prev + 1 );
                     
-                    return { shouldRepeat: false, delay: 0 };
+                    return { shouldRepeat: true, delay: 0 };
 
                 }}
                 >
