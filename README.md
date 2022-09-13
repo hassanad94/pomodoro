@@ -28,9 +28,10 @@ Beállítások után az "Ídőzítő Beállítása" Gombbal lehet véglegesíten
 
 Ha eltelt "Munkában" 3 Pomodoro automatikusan "Nagy szünet" fázisba tesz az alkalmazás, ahol megjelenik egy gomb amivel be lehet állítani egy új kérdést
 
-Új kérdés eseten-> A Kör számláló újra indul és a beírt kérdés lesz a fokusz témája.
+Új kérdés eseten-> A Kör számláló újra indul és a beírt kérdés lesz a fokusz témája. A szünetek ideje vissza állnak az eredeti állapotra.
 
 Munka folyatatásánál-> újra indul és majd megint 3 kör múlva lehet új kérdést feltenni.
+
 
 ### Új Pomodoró Beállítása
 
