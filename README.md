@@ -36,3 +36,10 @@ Munka folyatatásánál-> újra indul és majd megint 3 kör múlva lehet új k�
 ### Új Pomodoró Beállítása
 
 A gomb megnyomásával a kezdeti képernyőre kerülünk ahol be lehet állítani a Pomodorót és fokusz kérdést
+
+
+## Fejlesztési javaslatok
+
+-localstorage-be el lehetne tárolni az actuális focus kérdést és az ídőzítők állását.
+Ha elkezdődik a szünet vagy munka akkor felúgró meme-k
+
