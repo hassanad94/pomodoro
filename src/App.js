@@ -1,24 +1,49 @@
-import logo from './logo.svg';
+import SetPomodoro from './components/SetPomodoro';
 import './App.css';
+import Button from './components/Button';
+import { useState, useEffect, useContext } from 'react';
+import {CountdownCircleTimer} from 'react-countdown-circle-timer'
+import { SettingContext } from './context/SettingContext';
+import Pomodoro from './components/Pomodoro';
 
 function App() {
+
+  const { pomodoroIsSet } = useContext( SettingContext );
+  
+  const themeClick = ( theme ) =>{
+
+    document.querySelector( "body" ).setAttribute( "data-theme" , theme );
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className="container">
+
+      <div className='theme-picker' >
+
+        <div className='title'><p>Témák!</p></div>
+
+        <div className='theme dark' data-theme-color="#151932" onClick={() => themeClick( "dark" )}>Sötét</div>
+        <div className='theme light' data-theme-color="#878794" onClick={() => themeClick( "light" )}>Világos</div>
+        <div className='theme green' data-theme-color="#436b3a" onClick={() => themeClick( "green" )}>Zöld</div>
+
+      </div>
+
+      { pomodoroIsSet ? 
+      
+        <Pomodoro/>
+      
+        :
+      
+        <SetPomodoro/>
+      
+      }
+
+
+
     </div>
+     
   );
 }
 
